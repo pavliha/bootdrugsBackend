@@ -4,7 +4,7 @@ module.exports =  {
   serverConfig: {
     scheme: process.env.HTTP_SERVER_SCHEME || 'http',
     host: process.env.HTTP_SERVER_HOST || 'localhost',
-    port: process.env.HTTP_SERVER_PORT || 8888,
+    port: process.env.HTTP_SERVER_PORT || 8172,
     paths: {
       resetPasswordRequest: 'reset-password'
     },

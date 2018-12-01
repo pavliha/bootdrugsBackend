@@ -1,9 +1,12 @@
-const enableTokenRoutes = require('./token');
-const enableUserRoutes = require('./user');
+const enableAnalyzerRoutes = require('./analyzer');
+const enableArticleRoutes = require('./artical');
+const enableTrendRoutes = require('./trend');
+
 
 module.exports = ( app ) => {
 
-  enableTokenRoutes(app);
-  enableUserRoutes(app);
+  enableAnalyzerRoutes(app);
+  enableArticleRoutes(app);
+  enableTrendRoutes(app);
 
 };

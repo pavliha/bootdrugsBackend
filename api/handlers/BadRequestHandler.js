@@ -10,9 +10,6 @@ module.exports = (error, req, res, next) => {
   console.log('error ->> ', error ); // TODO : remove
 
   if ( error.error && error.error.isJoi ) {
-
-    res.set('x-code-error', 400);
-
     res
       .status(400)
       .json({
@@ -21,28 +18,25 @@ module.exports = (error, req, res, next) => {
 
   } else if ( error instanceof MongoError ) {
 
-    if ( error.code === 11000 ) {
-
-      res.set('x-code-error', res.errCodes ? res.errCodes[409] || 409 : 409 );
-
-      res
-        .status(409)
-        .json({
-          error: { message: responseErrors.error.duplicatedResource }
-        });
-    }
+    // if ( error.code === 11000 ) {
+    //
+    //   res.set('x-code-error', res.errCodes ? res.errCodes[409] || 409 : 409 );
+    //
+    //   res
+    //     .status(409)
+    //     .json({
+    //       error: { message: responseErrors.error.duplicatedResource }
+    //     });
+    // }
+    next();
 
   } else if ( error instanceof ValidationError ) {
-
-    res.set('x-code-error', 400);
 
     res.status( 400 ).json({
       error: { message: error.message }
     });
 
   } else {
-
-    res.set('x-code-error', error && !! error.statusCode ? error.statusCode : 500 );
 
     res.status( error && !! error.statusCode ? error.statusCode : 500 ).json({
       error: error && !! error.message ? { message: error.message }: { message: 'Unknown server error', details: error }
