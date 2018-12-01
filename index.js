@@ -19,15 +19,12 @@ require( './config/mongoose' )();
 
 const enableRoutes = require( './api/routes' );
 
-const enableApiDocs = require( './config/swagger' );
-
 /**
  * Enable 400+ request handlers
  */
 const BadRequestHandler = require( './api/handlers/BadRequestHandler' );
 const NotFoundHandler = require( './api/handlers/NotFoundHandler' );
 
-enableApiDocs( app );
 enableRoutes( app );
 
 app.use( BadRequestHandler );

@@ -18,16 +18,6 @@ module.exports = (error, req, res, next) => {
 
   } else if ( error instanceof MongoError ) {
 
-    // if ( error.code === 11000 ) {
-    //
-    //   res.set('x-code-error', res.errCodes ? res.errCodes[409] || 409 : 409 );
-    //
-    //   res
-    //     .status(409)
-    //     .json({
-    //       error: { message: responseErrors.error.duplicatedResource }
-    //     });
-    // }
     next();
 
   } else if ( error instanceof ValidationError ) {
